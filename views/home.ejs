@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GEDORCA</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #222831, #393e46);
+      color: #e0e0e0;
+      overflow-x: hidden;
+    }
+
+    header {
+      background: linear-gradient(90deg, #1a252f, #2c3e50);
+      color: #fff;
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: box-shadow 0.3s ease;
+    }
+
+    header:hover {
+      box-shadow: 0 6px 30px rgba(0, 0, 0, 0.9);
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: 700;
+      color: #ffd166;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 6px rgba(255, 209, 102, 0.7);
+      display: flex;
+      align-items: center;
+    }
+
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-links a, .nav-links span {
+      color: #ffd166;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    .nav-links a:hover, .nav-links span:hover a {
+      color: #ffeb3b;
+      transform: scale(1.1);
+    }
+
+    .nav-links span {
+      margin-right: 15px;
+    }
+
+    .slider-container {
+      background: linear-gradient(135deg, #4a4e69, #5d677a);
+      padding: 40px 0;
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+    }
+
+    .slider {
+      max-width: 1300px;
+      margin: 0 auto;
+      height: 500px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slides {
+      display: flex;
+      width: 200%; /* 100% per slide untuk 2 slide */
+      height: 100%;
+      transition: transform 0.6s ease-in-out;
+    }
+
+    .slide {
+      flex: 0 0 50%; /* Setiap slide 50% lebar */
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .slide img {
+      width: calc(40% - 80px);
+      height: calc(100% - 80px);
+      object-fit: cover;
+      border: 30px solid #4a4e69;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+      z-index: 2;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .slide img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.8);
+    }
+
+    .slide-text {
+      width: calc(60% - 80px);
+      padding: 20px;
+      background: rgba(74, 78, 105, 0.7);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      color: #fff;
+      font-size: 1.2em;
+      line-height: 1.6;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+      z-index: 2;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .slide-text:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .dots {
+      position: absolute;
+      bottom: 40px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 15px;
+      z-index: 10;
+    }
+
+    .dot {
+      width: 16px;
+      height: 16px;
+      background: rgba(255, 209, 102, 0.4);
+      border-radius: 50%;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+    }
+
+    .dot.active {
+      background: #ffd166;
+      transform: scale(1.5);
+      box-shadow: 0 4px 12px rgba(255, 209, 102, 0.8);
+    }
+
+    .dot:hover {
+      background: #ffeb3b;
+      transform: scale(1.3);
+    }
+
+    .content-section {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 60px 40px;
+      text-align: center;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .section-title {
+      font-size: 2.8em;
+      margin-bottom: 30px;
+      color: #ffd166;
+      font-weight: 700;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);
+    }
+
+    .featured-products .product-grid {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .featured-products .product-card {
+      width: 250px;
+      background: rgba(34, 40, 49, 0.7);
+      padding: 20px;
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .featured-products .product-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.9);
+    }
+
+    .featured-products img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 15px;
+      transition: transform 0.4s ease;
+    }
+
+    .featured-products img:hover {
+      transform: scale(1.1);
+    }
+
+    .featured-products p {
+      margin: 12px 0;
+      font-size: 1.1em;
+      color: #e0e0e0;
+    }
+
+    .featured-products a {
+      color: #ffd166;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+    }
+
+    .featured-products a:hover {
+      color: #ffeb3b;
+    }
+
+    .promo {
+      margin-top: 40px;
+      padding: 30px;
+      background: linear-gradient(135deg, #4a4e69, #5d677a);
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+    }
+
+    .promo a {
+      color: #ffd166;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .promo a:hover {
+      color: #ffeb3b;
+    }
+
+    .testimonials {
+      margin-top: 40px;
+    }
+
+    .testimonials .testimonial-grid {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+
+    .testimonials .testimonial {
+      width: 350px;
+      background: rgba(34, 40, 49, 0.7);
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(10px);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .testimonials .testimonial:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.9);
+    }
+
+    .reviews {
+      margin-top: 40px;
+    }
+
+    .reviews table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: rgba(34, 40, 49, 0.7);
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+      margin-top: 20px;
+      backdrop-filter: blur(10px);
+    }
+
+    .reviews th, .reviews td {
+      padding: 18px;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 209, 102, 0.2);
+    }
+
+    .reviews th {
+      background: linear-gradient(90deg, #4a4e69, #5d677a);
+      color: #ffd166;
+      font-weight: 700;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+    }
+
+    .reviews td {
+      color: #e0e0e0;
+      transition: background 0.3s ease;
+    }
+
+    .reviews tr:hover td {
+      background: rgba(255, 209, 102, 0.1);
+    }
+
+    .additional-reviews {
+      display: none;
+      margin-top: 15px;
+    }
+
+    .view-all {
+      margin-top: 15px;
+      color: #ffd166;
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: color 0.3s ease;
+    }
+
+    .view-all:hover {
+      color: #ffeb3b;
+    }
+
+    .cta {
+      margin-top: 40px;
+    }
+
+    .cta button {
+      padding: 15px 40px;
+      font-size: 1.3em;
+      background: linear-gradient(90deg, #4a4e69, #5d677a);
+      color: #ffd166;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.7);
+      margin-top: 20px;
+    }
+
+    .cta button:hover {
+      background: linear-gradient(90deg, #3a3e49, #4d576a);
+      transform: scale(1.1);
+      box-shadow: 0 8px 25px rgba(74, 78, 105, 0.8);
+    }
+
+    @media (max-width: 720px) {
+      header {
+        padding: 15px 20px;
+        flex-direction: column;
+        gap: 10px;
+      }
+      .logo { font-size: 24px; }
+      .nav-links { flex-direction: column; gap: 10px; }
+      .nav-links a, .nav-links span { margin: 0; }
+      .slider { height: 300px; }
+      .slide img { 
+        width: calc(60% - 40px);
+        height: calc(100% - 40px);
+        border: 20px solid #4a4e69;
+        border-radius: 15px;
+      }
+      .slide-text { display: none; }
+      .dots { bottom: 20px; gap: 10px; }
+      .dot { width: 12px; height: 12px; }
+      .dot.active { transform: scale(1.4); }
+      .dot:hover { transform: scale(1.2); }
+      .content-section { padding: 20px; }
+      .featured-products .product-card { width: 180px; }
+      .testimonials .testimonial { width: 100%; margin: 20px 0; }
+      .reviews th, .reviews td { padding: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">GEDORCA</div>
+    <div class="nav-links">
+      <% if (user && user.username) { %>
+        <span>Selamat datang, <%= user.username %> | <a href="/logout">Logout</a></span>
+      <% } else { %>
+        <a href="/login">Login</a>
+      <% } %>
+    </div>
+  </header>
+
+  <div class="slider-container">
+    <div class="slider">
+      <div class="slides">
+        <div class="slide">
+          <img src="/images/tambang1.jpeg" alt="Tambang Landscape 1" onerror="this.src='https://via.placeholder.com/900x1200?text=Gambar+Tidak+Ditemukan'">
+          <div class="slide-text">Conquer the rugged depths where strength meets endurance.</div>
+        </div>
+        <div class="slide">
+          <img src="/images/tambang2.jpeg" alt="Tambang Landscape 2" onerror="this.src='https://via.placeholder.com/900x1200?text=Gambar+Tidak+Ditemukan'">
+          <div class="slide-text">Step boldly into the heart of industrial challenges.</div>
+        </div>
+      </div>
+      <div class="dots">
+        <span class="dot active" onclick="currentSlide(0)"></span>
+        <span class="dot" onclick="currentSlide(1)"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-section">
+    <div class="featured-products">
+      <h2 class="section-title">Produk Unggulan Kami</h2>
+      <div class="product-grid">
+        <div class="product-card">
+          <img src="/images/sepatu safety leather tali coklat/cat_boot_leather_coklat_depan.jpeg" alt="Sepatu Safety Leather Coklat">
+          <p>Sepatu Safety Leather Tali Coklat</p>
+          <p>Rp 500.000</p>
+          <a href="/products">Lihat Detail</a>
+        </div>
+        <div class="product-card">
+          <img src="/images/sepatu safety leather tali hitam/cat_boot_leather_hitam_depan.jpeg" alt="Sepatu Safety Leather tali Hitam">
+          <p>Sepatu Safety Leather Tali Hitam</p>
+          <p>Rp 450.000</p>
+          <a href="/products">Lihat Detail</a>
+        </div>
+        <div class="product-card">
+          <img src="/images/sepatu safety resleting coklat/cat_boot_sleting_coklat.jpeg" alt="Sepatu Safety Leather Resleting Coklat">
+          <p>Sepatu Safety Leather Resleting Coklat</p>
+          <p>Rp 600.000</p>
+          <a href="/products">Lihat Detail</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="promo">
+      <h2 class="section-title">Penawaran Spesial</h2>
+      <p>Diskon 20% untuk Sepatu Safety - Berlaku Hingga 18 Oktober 2025!</p>
+    </div>
+
+    <div class="testimonials">
+      <h2 class="section-title">Apa Kata Pelanggan Kami</h2>
+      <div class="testimonial-grid">
+        <div class="testimonial">
+          <p>Sepatu ini sangat nyaman untuk kerja di lapangan!</p>
+          <p>- Budi, Konstruksi</p>
+        </div>
+        <div class="testimonial">
+          <p>Kualitas terbaik, tahan lama!</p>
+          <p>- Ani, Tambang</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="reviews">
+      <h2 class="section-title">Ulasan Pelanggan</h2>
+      <table id="reviewsTable">
+        <thead>
+          <tr>
+            <th>Ulasan</th>
+            <th>Nama</th>
+            <th>Tanggal</th>
+          </tr>
+        </thead>
+        <tbody id="reviewsBody">
+          <% if (typeof reviews !== 'undefined' && reviews && reviews.length > 0) { %>
+            <% let displayedReviews = reviews.slice(0, 5); %>
+            <% displayedReviews.forEach(review => { %>
+              <tr>
+                <td><%= review.review_text %></td>
+                <td><%= review.username %></td>
+                <td><%= new Date(review.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' }) %></td>
+              </tr>
+            <% }); %>
+            <% if (reviews.length > 5) { %>
+              <% let additionalReviews = reviews.slice(5); %>
+              <tbody id="additionalReviews" class="additional-reviews">
+                <% additionalReviews.forEach(review => { %>
+                  <tr>
+                    <td><%= review.review_text %></td>
+                    <td><%= review.username %></td>
+                    <td><%= new Date(review.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' }) %></td>
+                  </tr>
+                <% }); %>
+              </tbody>
+            <% } %>
+          <% } else { %>
+            <tr><td colspan="3">Belum ada ulasan.</td></tr>
+          <% } %>
+        </tbody>
+      </table>
+      <% if (typeof reviews !== 'undefined' && reviews && reviews.length > 5) { %>
+        <div class="view-all" onclick="toggleAdditionalReviews()">View All</div>
+      <% } %>
+    </div>
+
+    <div class="cta">
+      <h2 class="section-title">Mulai Belanja Sekarang</h2>
+      <button onclick="window.location.href='/products'">Lihat Semua Produk</button>
+    </div>
+  </div>
+
+  <script>
+    let slideIndex = 0;
+    const slides = document.querySelector('.slides');
+    const dots = document.querySelectorAll('.dot');
+    const totalSlides = document.querySelectorAll('.slide').length;
+
+    function updateDots() {
+      dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === slideIndex);
+      });
+    }
+
+    function moveSlide(n) {
+      slideIndex = (slideIndex + n + totalSlides) % totalSlides;
+      slides.style.transform = `translateX(-${slideIndex * 50}%)`;
+      updateDots();
+    }
+
+    function currentSlide(n) {
+      slideIndex = n;
+      slides.style.transform = `translateX(-${slideIndex * 50}%)`;
+      updateDots();
+    }
+
+    function toggleAdditionalReviews() {
+      const additionalReviews = document.getElementById('additionalReviews');
+      const viewAll = document.querySelector('.view-all');
+      if (additionalReviews.style.display === 'none' || additionalReviews.style.display === '') {
+        additionalReviews.style.display = 'table-row-group';
+        viewAll.textContent = 'Hide';
+      } else {
+        additionalReviews.style.display = 'none';
+        viewAll.textContent = 'View All';
+      }
+    }
+
+    // Slider otomatis
+    if (totalSlides > 1) {
+      setInterval(() => moveSlide(1), 6000); // Ganti setiap 6 detik
+    } else {
+      document.querySelector('.dots').style.display = 'none'; // Sembunyikan dots jika hanya 1 slide
+    }
+
+    updateDots(); // Inisialisasi dots saat halaman dimuat
+  </script>
+</body>
+
+<footer style="background: #222831; color: #e0e0e0; text-align: center; padding: 15px; position: relative; bottom: 0; width: 100%;">
+    <p>&copy; 2025 GEDORCA | <a href="/home" style="color: #ffd166; text-decoration: none;">Home</a> | <a href="/products" style="color: #ffd166; text-decoration: none;">Products</a> | <a href="/login" style="color: #ffd166; text-decoration: none;">Login</a></p>
+    <p>Kontak: <a  style="color: #ffd166; text-decoration: none;">+62 819 7896 78832</a></p>
+</footer>
+</html>

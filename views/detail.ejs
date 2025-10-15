@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title><%= product.name %> - GEDORCA</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Arial&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      background: linear-gradient(135deg, #222831, #393e46);
+      color: #e0e0e0;
+      line-height: 1.6;
+    }
+
+    header {
+      background: linear-gradient(90deg, #1a252f, #2c3e50);
+      color: #fff;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: box-shadow 0.3s ease;
+    }
+
+    header:hover {
+      box-shadow: 0 6px 30px rgba(0, 0, 0, 0.9);
+    }
+
+    .logo {
+      font-size: 28px;
+      font-weight: bold;
+      color: #ffd166;
+      text-shadow: 2px 2px 6px rgba(255, 209, 102, 0.7);
+    }
+
+    header input {
+      padding: 10px;
+      width: 250px;
+      border: none;
+      border-radius: 25px;
+      outline: none;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      transition: box-shadow 0.3s ease;
+    }
+
+    header input:focus {
+      box-shadow: 0 0 10px rgba(255, 209, 102, 0.5);
+    }
+
+    header a {
+      color: #ffd166;
+      text-decoration: none;
+      margin-left: 15px;
+      font-weight: 600;
+      transition: color 0.3s ease, transform 0.3s ease;
+    }
+
+    header a:hover {
+      color: #ffeb3b;
+      transform: scale(1.1);
+    }
+
+    .detail {
+      padding: 40px;
+      display: flex;
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .image-section {
+      flex: 1;
+      position: relative;
+    }
+
+    .main-img {
+      width: 100%;
+      height: 450px;
+      object-fit: cover;
+      border-radius: 15px;
+      border: 5px solid #4a4e69;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      transition: transform 0.4s ease;
+    }
+
+    .main-img:hover {
+      transform: scale(1.05);
+    }
+
+    .info-section {
+      flex: 2;
+    }
+
+    .info-section h1 {
+      margin-bottom: 20px;
+      font-size: 2em;
+    }
+
+    .info-section p {
+      margin: 10px 0;
+    }
+
+    .rating {
+      color: #ffd166;
+      font-size: 1.1em;
+      margin: 15px 0;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    table {
+      border-collapse: collapse;
+      margin: 20px 0;
+      width: 100%;
+      background: rgba(34, 40, 49, 0.7);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    th, td {
+      border: 1px solid rgba(255, 209, 102, 0.2);
+      padding: 12px;
+      text-align: center;
+    }
+
+    th {
+      background: linear-gradient(90deg, #4a4e69, #5d677a);
+      color: #ffd166;
+      font-weight: 700;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    button {
+      background: linear-gradient(90deg, #4a4e69, #5d677a);
+      color: #ffd166;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: all 0.4s ease;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+      margin-right: 10px;
+    }
+
+    button:hover {
+      background: linear-gradient(90deg, #3a3e49, #4d576a);
+      transform: scale(1.1);
+      box-shadow: 0 8px 25px rgba(74, 78, 105, 0.8);
+    }
+
+    form {
+      margin: 20px 0;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    select, input[type="number"] {
+      padding: 10px;
+      border-radius: 25px;
+      border: 1px solid #4a4e69;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      outline: none;
+    }
+
+    .recommendations {
+      margin-top: 50px;
+      padding: 0 40px;
+    }
+
+    .rec-list {
+      display: flex;
+      gap: 25px;
+      overflow-x: auto;
+      padding: 10px 0;
+    }
+
+    .rec-item {
+      background: rgba(34, 40, 49, 0.7);
+      padding: 15px;
+      border-radius: 15px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+      text-align: center;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      min-width: 200px;
+    }
+
+    .rec-item:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7);
+    }
+
+    .rec-img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+      border: 3px solid #ffd166;
+    }
+
+    a {
+      color: #ffd166;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      color: #ffeb3b;
+    }
+
+    .reviews {
+      margin-top: 50px;
+      padding: 0 40px;
+    }
+
+    .reviews h2 {
+      font-size: 1.8em;
+      margin-bottom: 15px;
+      color: #ffd166;
+      text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+    }
+
+    .reviews table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      background: rgba(34, 40, 49, 0.7);
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .reviews th, .reviews td {
+      border: 1px solid rgba(255, 209, 102, 0.2);
+      padding: 10px;
+      text-align: left;
+    }
+
+    .reviews th {
+      background: linear-gradient(90deg, #4a4e69, #5d677a);
+      color: #ffd166;
+      font-weight: 700;
+      text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .add-review {
+      display: flex;
+      gap: 15px;
+    }
+
+    .add-review input {
+      flex: 1;
+      padding: 10px;
+      border: 1px solid #4a4e69;
+      border-radius: 25px;
+      background: rgba(255, 255, 255, 0.1);
+      color: #fff;
+      outline: none;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .add-review input:focus {
+      box-shadow: 0 0 10px rgba(255, 209, 102, 0.5);
+    }
+
+    .add-review button {
+      padding: 10px 20px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background 0.4s ease, transform 0.4s ease;
+    }
+
+    .add-review button:hover {
+      background: #45a049;
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(76, 175, 80, 0.5);
+    }
+
+    .delete-btn {
+      background: #f44336;
+      color: white;
+      padding: 5px 10px;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      transition: background 0.3s ease, transform 0.3s ease;
+      margin-left: 10px;
+    }
+
+    .delete-btn:hover {
+      background: #d32f2f;
+      transform: scale(1.05);
+      box-shadow: 0 3px 10px rgba(244, 67, 54, 0.5);
+    }
+
+    @media (max-width: 768px) {
+      .detail {
+        flex-direction: column;
+      }
+      .main-img {
+        height: 300px;
+      }
+      .rec-list {
+        flex-direction: column;
+        align-items: center;
+      }
+      .rec-item {
+        min-width: 150px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">GEDORCA</div>
+    <input type="text" placeholder="Cari Sepatu...">
+    <% if (user && user.username) { %>
+      <span>Selamat datang, <%= user.username %> | <a href="/logout">Logout</a></span>
+    <% } else { %>
+      <a href="/login">Login</a> | <a href="/register">Daftar</a>
+    <% } %>
+  </header>
+  <div class="detail">
+    <div class="image-section">
+      <% let initialImage = '';
+         let hoverImage = '';
+         if (product.name === 'Sepatu Safety Tali Pendek') {
+           initialImage = '/images/Sepatu Safety Tali Pendek/cat_boot_tali_pendek.jpeg';
+           hoverImage = initialImage; // Tanpa hover
+         } else if (product.name === 'sepatu safety leather tali coklat') {
+           initialImage = '/images/sepatu safety leather tali coklat/cat_boot_leather_coklat_depan.jpeg';
+           hoverImage = '/images/sepatu safety leather tali coklat/cat_boot_leather_coklat_kanan.jpeg';
+         } else if (product.name === 'sepatu safety leather tali hitam') {
+           initialImage = '/images/sepatu safety leather tali hitam/cat_boot_leather_hitam_depan.jpeg';
+           hoverImage = '/images/sepatu safety leather tali hitam/cat_boot_leather_hitam_kanan.jpeg';
+         } else if (product.name === 'sepatu safety resleting coklat') {
+           initialImage = '/images/sepatu safety resleting coklat/cat_boot_sleting_coklat.jpeg';
+           hoverImage = '/images/sepatu safety resleting coklat/cat_boot_sleting_coklat+kaosKaki.jpeg';
+         } else if (product.name === 'sepatu safety resleting hitam') {
+           initialImage = '/images/sepatu safety resleting hitam/cat_boot_sleting_hitam_atas.jpeg';
+           hoverImage = '/images/sepatu safety resleting hitam/cat_boot_sleting_hitam.jpeg';
+         } else if (product.name === 'Sepatu Safety Tali coklat') {
+           initialImage = '/images/Sepatu Safety Tali coklat/cat_boot_tali_coklat_depan.jpeg';
+           hoverImage = '/images/Sepatu Safety Tali coklat/cat_boot_tali_coklat_kanan.jpeg';
+         } else if (product.name === 'Sepatu Safety Tali Hitam') {
+           initialImage = '/images/Sepatu Safety Tali Hitam/cat_boot_tali_hitam_atas.jpeg';
+           hoverImage = '/images/Sepatu Safety Tali Hitam/cat_boot_tali_hitam_kiri.jpeg';
+         } else {
+           initialImage = 'https://via.placeholder.com/400';
+           hoverImage = initialImage;
+         } %>
+      <img class="main-img" 
+           src="<%= initialImage %>" 
+           <% if (hoverImage !== initialImage) { %> 
+             onmouseover="this.src='<%= hoverImage %>'" 
+             onmouseout="this.src='<%= initialImage %>'" 
+           <% } %>
+           alt="<%= product.name %>">
+    </div>
+    <div class="info-section">
+      <h1><%= product.name %></h1>
+      <% let description = '';
+         if (product.name === 'Sepatu Safety Tali Pendek') {
+           description = `
+             <strong>Warna:</strong> Hitam<br>
+             <strong>Model Sepatu:</strong> Boot<br>
+             <strong>Material:</strong> Kulit Sintetis<br>
+             <strong>Tipe Pengikat:</strong> Tali<br>
+             <strong>Outsole:</strong> Thermoplastic Rubber Sole di jahit sekeliling<br>
+             <strong>Insole/Alas:</strong> PVC<br>
+             <strong>Tinggi Boots:</strong> Dibawah pergelangan kaki
+           `;
+         } else if (product.name === 'sepatu safety leather tali coklat') {
+           description = `
+             <strong>Warna:</strong> Coklat<br>
+             <strong>Model Sepatu:</strong> Boot<br>
+             <strong>Material:</strong> Kulit Sintetis<br>
+             <strong>Tipe Pengikat:</strong> Tali<br>
+             <strong>Outsole:</strong> Thermoplastic Rubber Sole di jahit sekeliling<br>
+             <strong>Insole/Alas:</strong> PVC<br>
+             <strong>Tinggi Boots:</strong> Diatas pergelangan kaki
+           `;
+         } else if (product.name === 'sepatu safety leather tali hitam') {
+           description = `
+             <strong>Warna:</strong> Hitam<br>
+             <strong>Model Sepatu:</strong> Boot<br>
+             <strong>Material:</strong> Kulit Sintetis<br>
+             <strong>Tipe Pengikat:</strong> Tali<br>
+             <strong>Outsole:</strong> Thermoplastic Rubber Sole di jahit sekeliling<br>
+             <strong>Insole/Alas:</strong> PVC<br>
+             <strong>Tinggi Boots:</strong> Diatas pergelangan kaki
+           `;
+         } else if (product.name === 'sepatu safety resleting coklat') {
+           description = `
+             <strong>Warna:</strong> Coklat<br>
+             <strong>Model Sepatu:</strong> Boot<br>
+             <strong>Material:</strong> PU Leather<br>
+             <strong>Tipe Pengikat:</strong> Resleting<br>
+             <strong>Outsole:</strong> Thermoplastic Rubber Sole<br>
+             <strong>Insole/Alas:</strong> PVC<br>
+             <strong>Tinggi Boots:</strong> Diatas pergelangan kaki
+           `;
+         } else if (product.name === 'sepatu safety resleting hitam') {
+           description = `
+             <strong>Warna:</strong> Hitam<br>
+             <strong>Model Sepatu:</strong> Boot<br>
+             <strong>Material:</strong> PU Leather<br>
+             <strong>Tipe Pengikat:</strong> Resleting<br>
+             <strong>Outsole:</strong> Thermoplastic Rubber Sole<br>
+             <strong>Insole/Alas:</strong> PVC<br>
+             <strong>Tinggi Boots:</strong> Diatas pergelangan kaki
+           `;
+         } else if (product.name === 'Sepatu Safety Tali coklat') {
+           description = `
+             <strong>Warna:</strong> Coklat<br>
+             <strong>Model Sepatu:</strong> Boot<br>
+             <strong>Material:</strong> Kulit Sintetis<br>
+             <strong>Tipe Pengikat:</strong> Resleting<br>
+             <strong>Outsole:</strong> Thermoplastic Rubber Sole<br>
+             <strong>Insole/Alas:</strong> PVC<br>
+             <strong>Tinggi Boots:</strong> Diatas pergelangan kaki
+           `;
+         } else if (product.name === 'Sepatu Safety Tali Hitam') {
+           description = `
+             <strong>Warna:</strong> Hitam/Coklat<br>
+             <strong>Model Sepatu:</strong> Boot<br>
+             <strong>Material:</strong> Kulit Sintetis<br>
+             <strong>Tipe Pengikat:</strong> Resleting<br>
+             <strong>Outsole:</strong> Thermoplastic Rubber Sole<br>
+             <strong>Insole/Alas:</strong> PVC<br>
+             <strong>Tinggi Boots:</strong> Diatas pergelangan kaki
+           `;
+         } else {
+           description = 'Deskripsi tidak tersedia untuk produk ini.';
+         }
+      %>
+      <p><%- description %></p>
+      <p><strong>Harga:</strong> Rp <%= product.price %> | <strong>Stok:</strong> <%= product.stock %></p>
+      <div class="rating">Rating: ★★★★☆ (4.5 / 5 dari 120 ulasan)</div>
+
+      <h2>Size Chart (Ukuran Standar CAT)</h2>
+      <table>
+        <tr><th>US</th><th>EU</th><th>UK</th><th>CM</th></tr>
+        <tr><td>7</td><td>40</td><td>6.5</td><td>25</td></tr>
+        <tr><td>8</td><td>41</td><td>7.5</td><td>26</td></tr>
+        <tr><td>9</td><td>42</td><td>8.5</td><td>27</td></tr>
+        <tr><td>10</td><td>43</td><td>9.5</td><td>28</td></tr>
+        <tr><td>11</td><td>44</td><td>10.5</td><td>29</td></tr>
+      </table>
+      <p class="note">Catatan: Ukuran di atas adalah standar. Konsultasikan jika ragu!</p>
+
+      <% if (product.stock > 0) { %>
+        <form action="/purchase/<%= product.id %>" method="POST">
+          <label>Pilih Ukuran: </label>
+          <select name="size">
+            <% if (['Sepatu Safety Tali Pendek', 'sepatu safety leather tali coklat', 'sepatu safety leather tali hitam', 'sepatu safety resleting coklat', 'sepatu safety resleting hitam', 'Sepatu Safety Tali coklat', 'Sepatu Safety Tali Hitam'].includes(product.name)) { %>
+              <option value="39">39</option>
+              <option value="40">40</option>
+              <option value="41">41</option>
+              <option value="42">42</option>
+              <option value="43">43</option>
+              <option value="44">44</option>
+              <option value="45">45</option>
+            <% } %>
+            <% if (['Sepatu Safety Tali coklat', 'Sepatu Safety Tali Hitam'].includes(product.name)) { %>
+              <option value="38">38</option>
+            <% } %>
+          </select>
+          <input type="number" name="quantity" min="1" max="<%= product.stock %>" value="1">
+          <button type="submit">Beli Sekarang</button>
+        </form>
+        <button onclick="alert('Hubungi support@GEDORCA.com untuk konsultasi ukuran')">Konsultasi Ukuran</button>
+      <% } else { %>
+        <p>Stok Habis</p>
+      <% } %>
+      <button onclick="window.location.href='/products'" style="margin-top: 10px;">Back</button>
+    </div>
+  </div>
+  <div class="recommendations">
+    <h2>Rekomendasi Serupa</h2>
+    <div class="rec-list">
+      <% if (recommendations && recommendations.length > 0) { %>
+        <% const displayedRecommendations = recommendations.slice(0, 3); %>
+        <% displayedRecommendations.forEach(rec => { %>
+          <% if (rec.id !== product.id) { %>
+            <% let recInitialImage = '';
+               let recHoverImage = '';
+               if (rec.name === 'Sepatu Safety Tali Pendek') {
+                 recInitialImage = '/images/Sepatu Safety Tali Pendek/cat_boot_tali_pendek.jpeg';
+                 recHoverImage = recInitialImage; // Tanpa hover
+               } else if (rec.name === 'sepatu safety leather tali coklat') {
+                 recInitialImage = '/images/sepatu safety leather tali coklat/cat_boot_leather_coklat_depan.jpeg';
+                 recHoverImage = '/images/sepatu safety leather tali coklat/cat_boot_leather_coklat_kanan.jpeg';
+               } else if (rec.name === 'sepatu safety leather tali hitam') {
+                 recInitialImage = '/images/sepatu safety leather tali hitam/cat_boot_leather_hitam_depan.jpeg';
+                 recHoverImage = '/images/sepatu safety leather tali hitam/cat_boot_leather_hitam_kanan.jpeg';
+               } else if (rec.name === 'sepatu safety resleting coklat') {
+                 recInitialImage = '/images/sepatu safety resleting coklat/cat_boot_sleting_coklat.jpeg';
+                 recHoverImage = '/images/sepatu safety resleting coklat/cat_boot_sleting_coklat+kaosKaki.jpeg';
+               } else if (rec.name === 'sepatu safety resleting hitam') {
+                 recInitialImage = '/images/sepatu safety resleting hitam/cat_boot_sleting_hitam_atas.jpeg';
+                 recHoverImage = '/images/sepatu safety resleting hitam/cat_boot_sleting_hitam.jpeg';
+               } else if (rec.name === 'Sepatu Safety Tali coklat') {
+                 recInitialImage = '/images/Sepatu Safety Tali coklat/cat_boot_tali_coklat_depan.jpeg';
+                 recHoverImage = '/images/Sepatu Safety Tali coklat/cat_boot_tali_coklat_kanan.jpeg';
+               } else if (rec.name === 'Sepatu Safety Tali Hitam') {
+                 recInitialImage = '/images/Sepatu Safety Tali Hitam/cat_boot_tali_hitam_atas.jpeg';
+                 recHoverImage = '/images/Sepatu Safety Tali Hitam/cat_boot_tali_hitam_kiri.jpeg';
+               } else {
+                 recInitialImage = 'https://via.placeholder.com/150';
+                 recHoverImage = recInitialImage;
+               } %>
+            <div class="rec-item">
+              <a href="/product/<%= rec.id %>">
+                <img class="rec-img" 
+                     src="<%= recInitialImage %>" 
+                     <% if (recHoverImage !== recInitialImage) { %> 
+                       onmouseover="this.src='<%= recHoverImage %>'" 
+                       onmouseout="this.src='<%= recInitialImage %>'" 
+                     <% } %>
+                     alt="<%= rec.name %>">
+                <p><%= rec.name %> - Rp <%= rec.price %></p>
+              </a>
+            </div>
+          <% } %>
+        <% }); %>
+        <% while (displayedRecommendations.length < 3) { %>
+          <div class="rec-item" style="opacity: 0.5;">
+            <p>Tidak ada rekomendasi tambahan</p>
+          </div>
+        <% } %>
+      <% } else { %>
+        <p>Tidak ada rekomendasi saat ini.</p>
+      <% } %>
+    </div>
+  </div>
+  <div class="reviews">
+    <h2>Ulasan Pelanggan</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Ulasan</th>
+          <th>Nama</th>
+          <th>Tanggal</th>
+          <th>Aksi</th> <!-- Kolom baru untuk tombol hapus -->
+        </tr>
+      </thead>
+      <tbody id="reviewsBody">
+        <% if (reviews && reviews.length > 0) { %>
+          <% reviews.forEach(review => { %>
+            <tr>
+              <td><%= review.review_text %></td>
+              <td><%= review.username %></td>
+              <td><%= new Date(review.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' }) %></td>
+              <td>
+                <% if (user && (user.username === review.username || user.role === 'admin')) { %>
+                  <button class="delete-btn" onclick="deleteReview(<%= review.id %>)">Hapus</button>
+                <% } %>
+              </td>
+            </tr>
+          <% }); %>
+        <% } else { %>
+          <tr><td colspan="4">Belum ada ulasan untuk produk ini.</td></tr>
+        <% } %>
+      </tbody>
+    </table>
+    <% if (user && user.username) { %>
+      <div class="add-review">
+        <input type="text" id="newReview" placeholder="Tulis ulasan Anda...">
+        <button onclick="addReview()">Tambah Ulasan</button>
+      </div>
+    <% } else { %>
+      <p>Silakan <a href="/login">login</a> untuk menambahkan ulasan.</p>
+    <% } %>
+  </div>
+  <script>
+    function addReview() {
+      const newReviewInput = document.getElementById('newReview');
+      if (newReviewInput.value.trim() === '') {
+        alert('Ulasan tidak boleh kosong!');
+        return;
+      }
+
+      const reviewText = newReviewInput.value;
+      const productId = <%= product.id %>;
+
+      fetch('/api/reviews', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text: reviewText, product_id: productId })
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok: ' + response.statusText);
+        }
+        return response.json();
+      })
+      .then(data => {
+        if (data.success) {
+          const date = new Date().toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+          const username = '<%= user ? user.username : "Anonymous" %>';
+          const newRow = document.createElement('tr');
+          newRow.innerHTML = `
+            <td>${reviewText}</td>
+            <td>${username}</td>
+            <td>${date}</td>
+            <td><button class="delete-btn" onclick="deleteReview(${data.id})">Hapus</button></td>
+          `;
+          const reviewsBody = document.getElementById('reviewsBody');
+          reviewsBody.insertBefore(newRow, reviewsBody.firstChild);
+          newReviewInput.value = '';
+        } else {
+          alert('Gagal menambahkan ulasan: ' + (data.error || 'Coba lagi.'));
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        alert('Terjadi kesalahan saat menyimpan ulasan: ' + error.message);
+      });
+    }
+
+    function deleteReview(reviewId) {
+      if (confirm('Apakah Anda yakin ingin menghapus ulasan ini?')) {
+        fetch(`/api/reviews/${reviewId}`, {
+          method: 'DELETE',
+          headers: { 'Content-Type': 'application/json' }
+        })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok: ' + response.statusText);
+          }
+          return response.json();
+        })
+        .then(data => {
+          if (data.success) {
+            const row = document.querySelector(`button[onclick="deleteReview(${reviewId})"]`).closest('tr');
+            row.remove();
+            alert('Ulasan berhasil dihapus.');
+          } else {
+            alert('Gagal menghapus ulasan: ' + (data.error || 'Coba lagi.'));
+          }
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('Terjadi kesalahan saat menghapus ulasan: ' + error.message);
+        });
+      }
+    }
+
+    document.getElementById('newReview').addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        addReview();
+      }
+    });
+  </script>
+</body>
+<footer style="background: #222831; color: #e0e0e0; text-align: center; padding: 15px; position: relative; bottom: 0; width: 100%;">
+    <p>&copy; 2025 GEDORCA | <a href="/home" style="color: #ffd166; text-decoration: none;">Home</a> | <a href="/products" style="color: #ffd166; text-decoration: none;">Products</a> | <a href="/login" style="color: #ffd166; text-decoration: none;">Login</a></p>
+    <p>Kontak: <a style="color: #ffd166; text-decoration: none;">+62 819 7896 78832</a></p>
+</footer>
+</html>
