@@ -195,14 +195,34 @@
     <div class="products">
       <h1>Daftar Sepatu Kerja</h1>
       <ul id="product-list">
-        <% products.forEach((product, index) => { %> <% const baseIndex = (index % 7) + 1; %> <% let initialImage = ''; let hoverImage = ''; if (baseIndex === 1) { initialImage = '/images/Sepatu Safety Leather Tali
-        Coklat/cat_boot_leather_coklat_depan.jpeg'; hoverImage = '/images/Sepatu Safety Leather Tali Coklat/cat_boot_leather_coklat_kanan.jpeg'; } else if (baseIndex === 2) { initialImage = '/images/Sepatu Safety Leather Tali
-        Hitam/cat_boot_leather_hitam_depan.jpeg'; hoverImage = '/images/Sepatu Safety Leather Tali Hitam/cat_boot_leather_hitam_kanan.jpeg'; } else if (baseIndex === 3) { initialImage = '/images/Sepatu Safety Resleting
-        Coklat/cat_boot_sleting_coklat.jpeg'; hoverImage = '/images/Sepatu Safety Resleting Coklat/cat_boot_sleting_coklat+kaosKaki.jpeg'; } else if (baseIndex === 4) { initialImage = '/images/Sepatu Safety Resleting
-        Hitam/cat_boot_sleting_hitam_atas.jpeg'; hoverImage = '/images/Sepatu Safety Resleting Hitam/cat_boot_sleting_hitam.jpeg'; } else if (baseIndex === 5) { initialImage = '/images/Sepatu Safety Tali
-        Coklat/cat_boot_tali_coklat_depan.jpeg'; hoverImage = '/images/Sepatu Safety Tali Coklat/cat_boot_tali_coklat_kanan.jpeg'; } else if (baseIndex === 6) { initialImage = '/images/Sepatu Safety Tali
-        Hitam/cat_boot_tali_hitam_atas.jpeg'; hoverImage = '/images/Sepatu Safety Tali Hitam/cat_boot_tali_hitam_kiri.jpeg'; } else if (baseIndex === 7) { initialImage = '/images/Sepatu Safety Tali Pendek/cat_boot_tali_pendek.jpeg';
-        hoverImage = initialImage; // Tanpa hover, gunakan gambar awal } %>
+        <% products.forEach((product, index) => { %> 
+        <% const baseIndex = (index % 7) + 1; %> 
+        <% 
+          let initialImage = ''; 
+          let hoverImage = ''; 
+          if (baseIndex === 1) { 
+            initialImage = '/images/Sepatu Safety Leather Tali Coklat/cat_boot_leather_coklat_depan.jpeg'; 
+            hoverImage = '/images/Sepatu Safety Leather Tali Coklat/cat_boot_leather_coklat_kanan.jpeg'; 
+          } else if (baseIndex === 2) { 
+            initialImage = '/images/Sepatu Safety Leather Tali Hitam/cat_boot_leather_hitam_depan.jpeg'; 
+            hoverImage = '/images/Sepatu Safety Leather Tali Hitam/cat_boot_leather_hitam_kanan.jpeg'; 
+          } else if (baseIndex === 3) { 
+            initialImage = '/images/Sepatu Safety Resleting Coklat/cat_boot_sleting_coklat.jpeg'; 
+            hoverImage = '/images/Sepatu Safety Resleting Coklat/cat_boot_sleting_coklat+kaosKaki.jpeg'; 
+          } else if (baseIndex === 4) { 
+            initialImage = '/images/Sepatu Safety Resleting Hitam/cat_boot_sleting_hitam_atas.jpeg'; 
+            hoverImage = '/images/Sepatu Safety Resleting Hitam/cat_boot_sleting_hitam.jpeg'; 
+          } else if (baseIndex === 5) { 
+            initialImage = '/images/Sepatu Safety Tali Coklat/cat_boot_tali_coklat_depan.jpeg'; 
+            hoverImage = '/images/Sepatu Safety Tali Coklat/cat_boot_tali_coklat_kanan.jpeg'; 
+          } else if (baseIndex === 6) { 
+            initialImage = '/images/Sepatu Safety Tali Hitam/cat_boot_tali_hitam_atas.jpeg'; 
+            hoverImage = '/images/Sepatu Safety Tali Hitam/cat_boot_tali_hitam_kiri.jpeg'; 
+          } else if (baseIndex === 7) { 
+            initialImage = '/images/Sepatu Safety Tali Pendek/cat_boot_tali_pendek.jpeg';
+            hoverImage = initialImage; // Tanpa hover, gunakan gambar awal 
+          } 
+        %>
         <li>
           <a href="/product/<%= product.id %>">
             <img class="product-img" src="<%= initialImage %>" <% if (hoverImage !== initialImage) { %> onmouseover="this.src='<%= hoverImage %>'" onmouseout="this.src='<%= initialImage %>'" <% } %> alt="<%= product.name %>">
