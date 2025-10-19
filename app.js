@@ -21,28 +21,29 @@ app.use(
 app.set("view engine", "ejs");
 
 // Database connection
-const db = mysql.createConnection({
+const db = mysql.createPool({
   host: process.env.DB_HOST || "localhost",
   user: process.env.DB_USER || "root",
   password: process.env.DB_PASSWORD || "",
   database: process.env.DB_NAME || "umkm_weprog",
 });
 
-db.connect((err) => {
+const adminPass = "adminpassword";
+bcrypt.hash(adminPass, 10, (err, hash) => {
   if (err) {
-    console.error("Database connection failed:", err);
-    throw err;
+    console.error("Error hashing admin password:", err);
+    return;
   }
-  console.log("MySQL Connected...");
-
-  const adminPass = "adminpassword";
-  bcrypt.hash(adminPass, 10, (err, hash) => {
-    if (err) throw err;
-    db.query("INSERT IGNORE INTO users (username, email, password, role) VALUES (?, ?, ?, ?)", ["admin", "admin@example.com", hash, "admin"], (err) => {
-      if (err) throw err;
-    });
+  db.query("INSERT IGNORE INTO users (username, email, password, role) VALUES (?, ?, ?, ?)", ["admin", "admin@example.com", hash, "admin"], (err) => {
+    if (err) {
+      console.error("Error inserting initial admin user:", err);
+    } else {
+      console.log("Admin user check/insert finished.");
+    }
   });
 });
+
+console.log("MySQL Connection Ready...");
 
 // Middleware untuk check login
 function isAuthenticated(req, res, next) {
@@ -252,7 +253,7 @@ app.post("/purchase/:id", isAuthenticated, (req, res) => {
             console.error("Reload products error:", err);
             return res.status(500).send("Error reloading products");
           }
-          res.render("products", { products, user: req.session.user, success: true });
+          res.render("products", { products, user: req.session.user, success: true, locals: { success: true } });
         });
       });
     });

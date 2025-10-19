@@ -1,171 +1,219 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Products - GEDORCA</title>
-  <style>
-    body { 
-      font-family: 'Arial', sans-serif; 
-      margin: 0; 
-      background: linear-gradient(135deg, #222831, #393e46); 
-      color: #e0e0e0; 
-    }
-    header { 
-      background: linear-gradient(90deg, #1a252f, #2c3e50); 
-      color: #fff; 
-      padding: 15px 30px; 
-      display: flex; 
-      justify-content: space-between; 
-      align-items: center; 
-      box-shadow: 0 4px 20px rgba(0,0,0,0.7); 
-      position: sticky; 
-      top: 0; 
-      z-index: 1000; 
-      transition: box-shadow 0.3s ease; 
-    }
-    header:hover { 
-      box-shadow: 0 6px 30px rgba(0,0,0,0.9); 
-    }
-    .logo { 
-      font-size: 28px; 
-      font-weight: bold; 
-      color: #ffd166; 
-      text-shadow: 2px 2px 6px rgba(255, 209, 102, 0.7); 
-    }
-    header input { 
-      padding: 10px; 
-      width: 300px; 
-      border: none; 
-      border-radius: 25px; 
-      outline: none; 
-      background: rgba(255, 255, 255, 0.1); 
-      color: #fff; 
-      transition: box-shadow 0.3s ease; 
-    }
-    header input:focus { 
-      box-shadow: 0 0 10px rgba(255, 209, 102, 0.5); 
-    }
-    header a { 
-      color: #ffd166; 
-      text-decoration: none; 
-      margin-left: 20px; 
-      font-weight: 600; 
-      transition: color 0.3s ease, transform 0.3s ease; 
-    }
-    header a:hover { 
-      color: #ffeb3b; 
-      transform: scale(1.1); 
-    }
-    .products { 
-      padding: 40px; 
-    }
-    .nav-links { 
-      display: flex; 
-      align-items: center; 
-    }
-    .nav-links a { 
-      margin-left: 15px; 
-    }
-    ul { 
-      list-style: none; 
-      padding: 0; 
-      display: grid; 
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-      gap: 30px; 
-    }
-    li { 
-      background: linear-gradient(145deg, #2d3436, #24292e); 
-      padding: 20px; 
-      border-radius: 15px; 
-      box-shadow: 0 8px 25px rgba(0,0,0,0.5); 
-      text-align: center; 
-      transition: transform 0.4s ease, box-shadow 0.4s ease; 
-      backdrop-filter: blur(10px); 
-    }
-    li:hover { 
-      transform: translateY(-10px); 
-      box-shadow: 0 12px 35px rgba(0,0,0,0.7); 
-    }
-    .product-img { 
-      width: 100%; 
-      height: 250px; 
-      object-fit: cover; 
-      border-radius: 10px; 
-      border: 4px solid #ffd166; 
-      transition: transform 0.4s ease; 
-    }
-    li:hover .product-img { 
-      transform: scale(1.1); 
-    }
-    h3 { 
-      margin: 15px 0; 
-      font-size: 1.3em; 
-      color: #ffd166; 
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.3); 
-    }
-    p { 
-      margin: 8px 0; 
-      color: #ccc; 
-      font-size: 1em; 
-    }
-    .message { 
-      margin-top: 20px; 
-      font-size: 1.2em; 
-      text-align: center; 
-    }
-    .success { 
-      color: #4CAF50; 
-    }
-    .error { 
-      color: #F44336; 
-    }
-    a { 
-      color: #ffd166; 
-      text-decoration: none; 
-    }
-    a:hover { 
-      text-decoration: underline; 
-      color: #ffeb3b; 
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="logo">GEDORCA</div>
-    <input type="text" id="search" placeholder="Cari Sepatu Proyek...">
-    <div class="nav-links">
-      <% if (user && user.username) { %>
+  <head>
+    <title>Products - GEDORCA</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        background: linear-gradient(135deg, #222831, #393e46);
+        color: #e0e0e0;
+      }
+      header {
+        background: linear-gradient(90deg, #1a252f, #2c3e50);
+        color: #fff;
+        padding: 15px 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        transition: box-shadow 0.3s ease;
+      }
+      header:hover {
+        box-shadow: 0 6px 30px rgba(0, 0, 0, 0.9);
+      }
+      .logo {
+        font-size: 28px;
+        font-weight: bold;
+        color: #ffd166;
+        text-shadow: 2px 2px 6px rgba(255, 209, 102, 0.7);
+      }
+      header input {
+        padding: 10px;
+        width: 300px;
+        border: none;
+        border-radius: 25px;
+        outline: none;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        transition: box-shadow 0.3s ease;
+      }
+      header input:focus {
+        box-shadow: 0 0 10px rgba(255, 209, 102, 0.5);
+      }
+      header a {
+        color: #ffd166;
+        text-decoration: none;
+        margin-left: 20px;
+        font-weight: 600;
+        transition: color 0.3s ease, transform 0.3s ease;
+      }
+      header a:hover {
+        color: #ffeb3b;
+        transform: scale(1.1);
+      }
+      .products {
+        padding: 40px;
+      }
+      .nav-links {
+        display: flex;
+        align-items: center;
+      }
+      .nav-links a {
+        margin-left: 15px;
+      }
+      ul {
+        list-style: none;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+      }
+      li {
+        background: linear-gradient(145deg, #2d3436, #24292e);
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+        text-align: center;
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        backdrop-filter: blur(10px);
+      }
+      li:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.7);
+      }
+      .product-img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 10px;
+        border: 4px solid #ffd166;
+        transition: transform 0.4s ease;
+      }
+      li:hover .product-img {
+        transform: scale(1.1);
+      }
+      h3 {
+        margin: 15px 0;
+        font-size: 1.3em;
+        color: #ffd166;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+      }
+      p {
+        margin: 8px 0;
+        color: #ccc;
+        font-size: 1em;
+      }
+      .message-container {
+        position: fixed;
+        width: 100%;
+        top: 80px;
+        left: 0;
+        display: flex;
+        justify-content: center;
+        pointer-events: none;
+        z-index: 2000;
+      }
+      .message {
+        padding: 15px 30px;
+        border-radius: 8px;
+        font-size: 1.2em;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        animation: slideDown 0.5s ease-out, slideUp 0.5s ease-in 4s forwards;
+        max-width: 80%;
+        margin: 0 auto;
+      }
+      .success {
+        background-color: #4caf50;
+        color: white;
+        border: 1px solid #45a049;
+      }
+      .error {
+        background-color: #f44336;
+        color: white;
+        border: 1px solid #da190b;
+      }
+      @keyframes slideDown {
+        from {
+          transform: translateY(-100px);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+      @keyframes slideUp {
+        from {
+          transform: translateY(0);
+          opacity: 1;
+        }
+        to {
+          transform: translateY(-100px);
+          opacity: 0;
+        }
+      }
+      a {
+        color: #ffd166;
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+        color: #ffeb3b;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">GEDORCA</div>
+      <input type="text" id="search" placeholder="Cari Sepatu Proyek..." />
+      <div class="nav-links">
+        <% if (user && user.username) { %>
         <span>Selamat datang, <%= user.username %> | <a href="/logout">Logout</a></span>
-      <% } else { %>
+        <% } else { %>
         <a href="/login">Login</a> | <a href="/register">Daftar</a>
-      <% } %>
-      <a href="/history">History</a>
-      <% if (user && user.role === 'admin') { %>
+        <% } %>
+        <a href="/history">History</a>
+        <% if (user && user.role === 'admin') { %>
         <a href="/admin">Admin Dashboard</a>
+        <% } %>
+      </div>
+    </header>
+    <% if (locals.success || locals.error) { %>
+    <div class="message-container">
+      <% if (locals.success) { %>
+      <p class="message success">Pembelian berhasil!</p>
+      <% } else if (locals.error) { %>
+      <p class="message error"><%= error %></p>
       <% } %>
     </div>
-  </header>
-  <div class="products">
-    <h1>Daftar Sepatu Kerja</h1>
-    <ul id="product-list">
-      <% products.forEach((product, index) => { %>
+    <% } %>
+    <div class="products">
+      <h1>Daftar Sepatu Kerja</h1>
+      <ul id="product-list">
+        <% products.forEach((product, index) => { %>
         <% const baseIndex = (index % 7) + 1; %>
         <% let initialImage = '';
            let hoverImage = '';
            if (baseIndex === 1) {
-             initialImage = '/images/sepatu safety leather tali coklat/cat_boot_leather_coklat_depan.jpeg';
-             hoverImage = '/images/sepatu safety leather tali coklat/cat_boot_leather_coklat_kanan.jpeg';
+             initialImage = '/images/Sepatu Safety Leather Tali Coklat/cat_boot_leather_coklat_depan.jpeg';
+             hoverImage = '/images/Sepatu Safety Leather Tali Coklat/cat_boot_leather_coklat_kanan.jpeg';
            } else if (baseIndex === 2) {
-             initialImage = '/images/sepatu safety leather tali hitam/cat_boot_leather_hitam_depan.jpeg';
-             hoverImage = '/images/sepatu safety leather tali hitam/cat_boot_leather_hitam_kanan.jpeg';
+             initialImage = '/images/Sepatu Safety Leather Tali Hitam/cat_boot_leather_hitam_depan.jpeg';
+             hoverImage = '/images/Sepatu Safety Leather Tali Hitam/cat_boot_leather_hitam_kanan.jpeg';
            } else if (baseIndex === 3) {
-             initialImage = '/images/sepatu safety resleting coklat/cat_boot_sleting_coklat.jpeg';
-             hoverImage = '/images/sepatu safety resleting coklat/cat_boot_sleting_coklat+kaosKaki.jpeg';
+             initialImage = '/images/Sepatu Safety Resleting Coklat/cat_boot_sleting_coklat.jpeg';
+             hoverImage = '/images/Sepatu Safety Resleting Coklat/cat_boot_sleting_coklat+kaosKaki.jpeg';
            } else if (baseIndex === 4) {
-             initialImage = '/images/sepatu safety resleting hitam/cat_boot_sleting_hitam_atas.jpeg';
-             hoverImage = '/images/sepatu safety resleting hitam/cat_boot_sleting_hitam.jpeg';
+             initialImage = '/images/Sepatu Safety Resleting Hitam/cat_boot_sleting_hitam_atas.jpeg';
+             hoverImage = '/images/Sepatu Safety Resleting Hitam/cat_boot_sleting_hitam.jpeg';
            } else if (baseIndex === 5) {
-             initialImage = '/images/Sepatu Safety Tali coklat/cat_boot_tali_coklat_depan.jpeg';
-             hoverImage = '/images/Sepatu Safety Tali coklat/cat_boot_tali_coklat_kanan.jpeg';
+             initialImage = '/images/Sepatu Safety Tali Coklat/cat_boot_tali_coklat_depan.jpeg';
+             hoverImage = '/images/Sepatu Safety Tali Coklat/cat_boot_tali_coklat_kanan.jpeg';
            } else if (baseIndex === 6) {
              initialImage = '/images/Sepatu Safety Tali Hitam/cat_boot_tali_hitam_atas.jpeg';
              hoverImage = '/images/Sepatu Safety Tali Hitam/cat_boot_tali_hitam_kiri.jpeg';
@@ -175,38 +223,30 @@
            } %>
         <li>
           <a href="/product/<%= product.id %>">
-            <img class="product-img" 
-                 src="<%= initialImage %>" 
-                 <% if (hoverImage !== initialImage) { %> 
-                   onmouseover="this.src='<%= hoverImage %>'" 
-                   onmouseout="this.src='<%= initialImage %>'" 
-                 <% } %>
-                 alt="<%= product.name %>">
+            <img class="product-img" src="<%= initialImage %>" <% if (hoverImage !== initialImage) { %> onmouseover="this.src='<%= hoverImage %>'" onmouseout="this.src='<%= initialImage %>'" <% } %> alt="<%= product.name %>">
             <h3><%= product.name %></h3>
             <p>Rp <%= product.price %> - Stok: <%= product.stock %></p>
           </a>
         </li>
-      <% }); %>
-    </ul>
-    <% if (locals.success) { %>
-      <p class="message success">Pembelian berhasil!</p>
-    <% } else if (locals.error) { %>
-      <p class="message error"><%= error %></p>
-    <% } %>
-  </div>
-  <script>
-    document.getElementById('search').addEventListener('input', function(e) {
-      let searchTerm = e.target.value.toLowerCase();
-      let items = document.querySelectorAll('#product-list li');
-      items.forEach(item => {
-        let text = item.textContent.toLowerCase();
-        item.style.display = text.includes(searchTerm) ? '' : 'none';
+        <% }); %>
+      </ul>
+    </div>
+    <script>
+      document.getElementById("search").addEventListener("input", function (e) {
+        let searchTerm = e.target.value.toLowerCase();
+        let items = document.querySelectorAll("#product-list li");
+        items.forEach((item) => {
+          let text = item.textContent.toLowerCase();
+          item.style.display = text.includes(searchTerm) ? "" : "none";
+        });
       });
-    });
-  </script>
-</body>
-<footer style="background: #222831; color: #e0e0e0; text-align: center; padding: 15px; position: relative; bottom: 0; width: 100%;">
-    <p>&copy; 2025 GEDORCA | <a href="/home" style="color: #ffd166; text-decoration: none;">Home</a> | <a href="/products" style="color: #ffd166; text-decoration: none;">Products</a> | <a href="/login" style="color: #ffd166; text-decoration: none;">Login</a></p>
-    <p>Kontak: <a  style="color: #ffd166; text-decoration: none;">+62 819 7896 78832</a></p>
-</footer>
+    </script>
+  </body>
+  <footer style="background: #222831; color: #e0e0e0; text-align: center; padding: 15px; position: relative; bottom: 0; width: 100%">
+    <p>
+      &copy; 2025 GEDORCA | <a href="/home" style="color: #ffd166; text-decoration: none">Home</a> | <a href="/products" style="color: #ffd166; text-decoration: none">Products</a> |
+      <a href="/login" style="color: #ffd166; text-decoration: none">Login</a>
+    </p>
+    <p>Kontak: <a style="color: #ffd166; text-decoration: none">+62 819 7896 78832</a></p>
+  </footer>
 </html>

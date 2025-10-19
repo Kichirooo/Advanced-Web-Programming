@@ -343,21 +343,21 @@
          if (product.name === 'Sepatu Safety Tali Pendek') {
            initialImage = '/images/Sepatu Safety Tali Pendek/cat_boot_tali_pendek.jpeg';
            hoverImage = initialImage; // Tanpa hover
-         } else if (product.name === 'sepatu safety leather tali coklat') {
-           initialImage = '/images/sepatu safety leather tali coklat/cat_boot_leather_coklat_depan.jpeg';
-           hoverImage = '/images/sepatu safety leather tali coklat/cat_boot_leather_coklat_kanan.jpeg';
-         } else if (product.name === 'sepatu safety leather tali hitam') {
-           initialImage = '/images/sepatu safety leather tali hitam/cat_boot_leather_hitam_depan.jpeg';
-           hoverImage = '/images/sepatu safety leather tali hitam/cat_boot_leather_hitam_kanan.jpeg';
-         } else if (product.name === 'sepatu safety resleting coklat') {
-           initialImage = '/images/sepatu safety resleting coklat/cat_boot_sleting_coklat.jpeg';
-           hoverImage = '/images/sepatu safety resleting coklat/cat_boot_sleting_coklat+kaosKaki.jpeg';
-         } else if (product.name === 'sepatu safety resleting hitam') {
-           initialImage = '/images/sepatu safety resleting hitam/cat_boot_sleting_hitam_atas.jpeg';
-           hoverImage = '/images/sepatu safety resleting hitam/cat_boot_sleting_hitam.jpeg';
-         } else if (product.name === 'Sepatu Safety Tali coklat') {
-           initialImage = '/images/Sepatu Safety Tali coklat/cat_boot_tali_coklat_depan.jpeg';
-           hoverImage = '/images/Sepatu Safety Tali coklat/cat_boot_tali_coklat_kanan.jpeg';
+         } else if (product.name === 'Sepatu Safety Leather Tali Coklat') {
+           initialImage = '/images/Sepatu Safety Leather Tali Coklat/cat_boot_leather_coklat_depan.jpeg';
+           hoverImage = '/images/Sepatu Safety Leather Tali Coklat/cat_boot_leather_coklat_kanan.jpeg';
+         } else if (product.name === 'Sepatu Safety Leather Tali Hitam') {
+           initialImage = '/images/Sepatu Safety Leather Tali Hitam/cat_boot_leather_hitam_depan.jpeg';
+           hoverImage = '/images/Sepatu Safety Leather Tali Hitam/cat_boot_leather_hitam_kanan.jpeg';
+         } else if (product.name === 'Sepatu Safety Resleting Coklat') {
+           initialImage = '/images/Sepatu Safety Resleting Coklat/cat_boot_sleting_coklat.jpeg';
+           hoverImage = '/images/Sepatu Safety Resleting Coklat/cat_boot_sleting_coklat+kaosKaki.jpeg';
+         } else if (product.name === 'Sepatu Safety Resleting Hitam') {
+           initialImage = '/images/Sepatu Safety Resleting Hitam/cat_boot_sleting_hitam_atas.jpeg';
+           hoverImage = '/images/Sepatu Safety Resleting Hitam/cat_boot_sleting_hitam.jpeg';
+         } else if (product.name === 'Sepatu Safety Tali Coklat') {
+           initialImage = '/images/Sepatu Safety Tali Coklat/cat_boot_tali_coklat_depan.jpeg';
+           hoverImage = '/images/Sepatu Safety Tali Coklat/cat_boot_tali_coklat_kanan.jpeg';
          } else if (product.name === 'Sepatu Safety Tali Hitam') {
            initialImage = '/images/Sepatu Safety Tali Hitam/cat_boot_tali_hitam_atas.jpeg';
            hoverImage = '/images/Sepatu Safety Tali Hitam/cat_boot_tali_hitam_kiri.jpeg';
@@ -386,7 +386,7 @@
              <strong>Insole/Alas:</strong> PVC<br>
              <strong>Tinggi Boots:</strong> Dibawah pergelangan kaki
            `;
-         } else if (product.name === 'sepatu safety leather tali coklat') {
+         } else if (product.name === 'Sepatu Safety Leather Tali Coklat') {
            description = `
              <strong>Warna:</strong> Coklat<br>
              <strong>Model Sepatu:</strong> Boot<br>
@@ -396,7 +396,7 @@
              <strong>Insole/Alas:</strong> PVC<br>
              <strong>Tinggi Boots:</strong> Diatas pergelangan kaki
            `;
-         } else if (product.name === 'sepatu safety leather tali hitam') {
+         } else if (product.name === 'Sepatu Safety Leather Tali Hitam') {
            description = `
              <strong>Warna:</strong> Hitam<br>
              <strong>Model Sepatu:</strong> Boot<br>
@@ -406,7 +406,7 @@
              <strong>Insole/Alas:</strong> PVC<br>
              <strong>Tinggi Boots:</strong> Diatas pergelangan kaki
            `;
-         } else if (product.name === 'sepatu safety resleting coklat') {
+         } else if (product.name === 'Sepatu Safety Resleting Coklat') {
            description = `
              <strong>Warna:</strong> Coklat<br>
              <strong>Model Sepatu:</strong> Boot<br>
@@ -416,7 +416,7 @@
              <strong>Insole/Alas:</strong> PVC<br>
              <strong>Tinggi Boots:</strong> Diatas pergelangan kaki
            `;
-         } else if (product.name === 'sepatu safety resleting hitam') {
+         } else if (product.name === 'Sepatu Safety Resleting Hitam') {
            description = `
              <strong>Warna:</strong> Hitam<br>
              <strong>Model Sepatu:</strong> Boot<br>
@@ -426,7 +426,7 @@
              <strong>Insole/Alas:</strong> PVC<br>
              <strong>Tinggi Boots:</strong> Diatas pergelangan kaki
            `;
-         } else if (product.name === 'Sepatu Safety Tali coklat') {
+         } else if (product.name === 'Sepatu Safety Tali Coklat') {
            description = `
              <strong>Warna:</strong> Coklat<br>
              <strong>Model Sepatu:</strong> Boot<br>
@@ -469,7 +469,7 @@
         <form action="/purchase/<%= product.id %>" method="POST">
           <label>Pilih Ukuran: </label>
           <select name="size">
-            <% if (['Sepatu Safety Tali Pendek', 'sepatu safety leather tali coklat', 'sepatu safety leather tali hitam', 'sepatu safety resleting coklat', 'sepatu safety resleting hitam', 'Sepatu Safety Tali coklat', 'Sepatu Safety Tali Hitam'].includes(product.name)) { %>
+            <% if (['Sepatu Safety Tali Pendek', 'Sepatu Safety Leather Tali Coklat', 'Sepatu Safety Leather Tali Hitam', 'Sepatu Safety Resleting Coklat', 'Sepatu Safety Resleting Hitam', 'Sepatu Safety Tali Coklat', 'Sepatu Safety Tali Hitam'].includes(product.name)) { %>
               <option value="39">39</option>
               <option value="40">40</option>
               <option value="41">41</option>
@@ -504,21 +504,21 @@
                if (rec.name === 'Sepatu Safety Tali Pendek') {
                  recInitialImage = '/images/Sepatu Safety Tali Pendek/cat_boot_tali_pendek.jpeg';
                  recHoverImage = recInitialImage; // Tanpa hover
-               } else if (rec.name === 'sepatu safety leather tali coklat') {
-                 recInitialImage = '/images/sepatu safety leather tali coklat/cat_boot_leather_coklat_depan.jpeg';
-                 recHoverImage = '/images/sepatu safety leather tali coklat/cat_boot_leather_coklat_kanan.jpeg';
-               } else if (rec.name === 'sepatu safety leather tali hitam') {
-                 recInitialImage = '/images/sepatu safety leather tali hitam/cat_boot_leather_hitam_depan.jpeg';
-                 recHoverImage = '/images/sepatu safety leather tali hitam/cat_boot_leather_hitam_kanan.jpeg';
-               } else if (rec.name === 'sepatu safety resleting coklat') {
-                 recInitialImage = '/images/sepatu safety resleting coklat/cat_boot_sleting_coklat.jpeg';
-                 recHoverImage = '/images/sepatu safety resleting coklat/cat_boot_sleting_coklat+kaosKaki.jpeg';
-               } else if (rec.name === 'sepatu safety resleting hitam') {
-                 recInitialImage = '/images/sepatu safety resleting hitam/cat_boot_sleting_hitam_atas.jpeg';
-                 recHoverImage = '/images/sepatu safety resleting hitam/cat_boot_sleting_hitam.jpeg';
-               } else if (rec.name === 'Sepatu Safety Tali coklat') {
-                 recInitialImage = '/images/Sepatu Safety Tali coklat/cat_boot_tali_coklat_depan.jpeg';
-                 recHoverImage = '/images/Sepatu Safety Tali coklat/cat_boot_tali_coklat_kanan.jpeg';
+               } else if (rec.name === 'Sepatu Safety Leather Tali Coklat') {
+                 recInitialImage = '/images/Sepatu Safety Leather Tali Coklat/cat_boot_leather_coklat_depan.jpeg';
+                 recHoverImage = '/images/Sepatu Safety Leather Tali Coklat/cat_boot_leather_coklat_kanan.jpeg';
+               } else if (rec.name === 'Sepatu Safety Leather Tali Hitam') {
+                 recInitialImage = '/images/Sepatu Safety Leather Tali Hitam/cat_boot_leather_hitam_depan.jpeg';
+                 recHoverImage = '/images/Sepatu Safety Leather Tali Hitam/cat_boot_leather_hitam_kanan.jpeg';
+               } else if (rec.name === 'Sepatu Safety Resleting Coklat') {
+                 recInitialImage = '/images/Sepatu Safety Resleting Coklat/cat_boot_sleting_coklat.jpeg';
+                 recHoverImage = '/images/sepatu Safety Resleting Coklat/cat_boot_sleting_coklat+kaosKaki.jpeg';
+               } else if (rec.name === 'Sepatu Safety Resleting Hitam') {
+                 recInitialImage = '/images/Sepatu Safety Resleting Hitam/cat_boot_sleting_hitam_atas.jpeg';
+                 recHoverImage = '/images/Sepatu Safety Resleting Hitam/cat_boot_sleting_hitam.jpeg';
+               } else if (rec.name === 'Sepatu Safety Tali Coklat') {
+                 recInitialImage = '/images/Sepatu Safety Tali Coklat/cat_boot_tali_coklat_depan.jpeg';
+                 recHoverImage = '/images/Sepatu Safety Tali Coklat/cat_boot_tali_coklat_kanan.jpeg';
                } else if (rec.name === 'Sepatu Safety Tali Hitam') {
                  recInitialImage = '/images/Sepatu Safety Tali Hitam/cat_boot_tali_hitam_atas.jpeg';
                  recHoverImage = '/images/Sepatu Safety Tali Hitam/cat_boot_tali_hitam_kiri.jpeg';
