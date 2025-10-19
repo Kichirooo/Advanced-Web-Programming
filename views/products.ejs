@@ -207,7 +207,7 @@
           <a href="/product/<%= product.id %>">
             <img class="product-img" src="<%= initialImage %>" <% if (hoverImage !== initialImage) { %> onmouseover="this.src='<%= hoverImage %>'" onmouseout="this.src='<%= initialImage %>'" <% } %> alt="<%= product.name %>">
             <h3><%= product.name %></h3>
-            <p>Rp <%= formatRupiah(product.price) %> - Stok: <%= product.stock %></p>
+            <p>Rp <%= Number(product.price).toLocaleString('id-ID') %> - Stok: <%= product.stock %></p>
           </a>
         </li>
         <% }); %>
