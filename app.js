@@ -28,7 +28,7 @@ const db = mysql.createPool({
   database: process.env.DB_NAME || "umkm_weprog",
 });
 
-const adminPass = "adminpassword";
+const adminPass = "admin123";
 bcrypt.hash(adminPass, 10, (err, hash) => {
   if (err) {
     console.error("Error hashing admin password:", err);
