@@ -3,6 +3,7 @@ const mysql = require("mysql2");
 const bcrypt = require("bcrypt");
 const session = require("express-session");
 const bodyParser = require("body-parser");
+const path = require("path");
 
 const app = express();
 const port = 3000;
@@ -10,7 +11,7 @@ const port = 3000;
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 app.use(
   session({
     secret: "your-secret-key",
@@ -19,6 +20,7 @@ app.use(
   })
 );
 app.set("view engine", "ejs");
+app.set("views", __dirname + "/views");
 
 // Database connection
 const db = mysql.createPool({
