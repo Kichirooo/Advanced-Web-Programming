@@ -220,14 +220,14 @@
             hoverImage = '/images/Sepatu Safety Tali Hitam/cat_boot_tali_hitam_kiri.jpeg'; 
           } else if (baseIndex === 7) { 
             initialImage = '/images/Sepatu Safety Tali Pendek/cat_boot_tali_pendek.jpeg';
-            hoverImage = initialImage; // Tanpa hover, gunakan gambar awal 
+            hoverImage = initialImage;
           } 
         %>
         <li>
           <a href="/product/<%= product.id %>">
             <img class="product-img" src="<%= initialImage %>" <% if (hoverImage !== initialImage) { %> onmouseover="this.src='<%= hoverImage %>'" onmouseout="this.src='<%= initialImage %>'" <% } %> alt="<%= product.name %>">
             <h3><%= product.name %></h3>
-            <p>Rp <%= product.price %> - Stok: <%= product.stock %></p>
+            <p>Rp <%= Math.floor(product.price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") %> - Stok: <%= product.stock %></p>
           </a>
         </li>
         <% }); %>
