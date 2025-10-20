@@ -1,177 +1,240 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>History - ToughTreads</title>
-  <style>
-    body { 
-      font-family: 'Arial', sans-serif; 
-      margin: 0; 
-      background: linear-gradient(135deg, #222831, #393e46); 
-      color: #e0e0e0; 
-    }
-    header { 
-      background: linear-gradient(90deg, #1a252f, #2c3e50); 
-      color: #fff; 
-      padding: 15px 30px; 
-      display: flex; 
-      justify-content: space-between; 
-      align-items: center; 
-      box-shadow: 0 4px 20px rgba(0,0,0,0.7); 
-      position: sticky; 
-      top: 0; 
-      z-index: 1000; 
-      transition: box-shadow 0.3s ease; 
-    }
-    header:hover { 
-      box-shadow: 0 6px 30px rgba(0,0,0,0.9); 
-    }
-    .logo { 
-      font-size: 28px; 
-      font-weight: bold; 
-      color: #ffd166; 
-      text-shadow: 2px 2px 6px rgba(255, 209, 102, 0.7); 
-    }
-    header input { 
-      padding: 10px; 
-      width: 250px; 
-      border: none; 
-      border-radius: 25px; 
-      outline: none; 
-      background: rgba(255, 255, 255, 0.1); 
-      color: #fff; 
-      transition: box-shadow 0.3s ease; 
-    }
-    header input:focus { 
-      box-shadow: 0 0 10px rgba(255, 209, 102, 0.5); 
-    }
-    header a { 
-      color: #ffd166; 
-      text-decoration: none; 
-      margin-left: 15px; 
-      font-weight: 600; 
-      transition: color 0.3s ease, transform 0.3s ease; 
-    }
-    header a:hover { 
-      color: #ffeb3b; 
-      transform: scale(1.1); 
-    }
-    .history { 
-      padding: 40px; 
-    }
-    h1 { 
-      font-size: 2em; 
-      color: #ffd166; 
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.3); 
-      margin-bottom: 20px; 
-    }
-    table { 
-      width: 100%; 
-      border-collapse: collapse; 
-      background: rgba(34, 40, 49, 0.7); 
-      border-radius: 10px; 
-      overflow: hidden; 
-      box-shadow: 0 6px 20px rgba(0,0,0,0.5); 
-    }
-    th, td { 
-      border: 1px solid rgba(255, 209, 102, 0.2); 
-      padding: 12px; 
-      text-align: left; 
-    }
-    th { 
-      background: linear-gradient(90deg, #4a4e69, #5d677a); 
-      color: #ffd166; 
-      font-weight: 700; 
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.5); 
-    }
-    .cancel-btn { 
-      background: linear-gradient(90deg, #FF4444, #CC0000); 
-      color: #fff; 
-      border: none; 
-      padding: 10px 20px; 
-      border-radius: 25px; 
-      cursor: pointer; 
-      transition: all 0.4s ease; 
-      text-shadow: 1px 1px 4px rgba(0,0,0,0.3); 
-    }
-    .cancel-btn:hover { 
-      background: linear-gradient(90deg, #CC0000, #990000); 
-      transform: scale(1.1); 
-      box-shadow: 0 5px 15px rgba(255, 68, 68, 0.5); 
-    }
-    .expired-notice { 
-      color: #FF4444; 
-      font-style: italic; 
-      font-size: 0.9em; 
-    }
-    a { 
-      color: #ffd166; 
-      text-decoration: none; 
-      padding: 10px 20px;
-      margin-top: 8px; 
-      display: inline-block; 
-      border-radius: 25px; 
-      background: rgba(74, 78, 105, 0.3); 
-      transition: all 0.3s ease; 
-    }
-    a:hover { 
-      color: #ffeb3b; 
-      background: rgba(74, 78, 105, 0.5); 
-      transform: scale(1.05); 
-      text-decoration: none; 
-    }
-    @media (max-width: 768px) {
-      table { 
-        font-size: 0.9em; 
+  <head>
+    <title>History - ToughTreads</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        margin: 0;
+        background: linear-gradient(135deg, #222831, #393e46);
+        color: #e0e0e0;
       }
-      th, td { 
-        padding: 8px; 
+      header {
+        background: linear-gradient(90deg, #1a252f, #2c3e50);
+        color: #fff;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        transition: box-shadow 0.3s ease;
+        flex-wrap: wrap;
       }
-      .cancel-btn { 
-        padding: 8px 15px; 
+
+      @media screen and (max-width: 768px) {
+        header {
+          padding: 10px 15px;
+        }
+
+        .logo {
+          font-size: 20px;
+        }
+
+        header input {
+          width: 100%;
+          margin: 10px 0;
+        }
+
+        .container {
+          padding: 10px;
+        }
+
+        .order-history {
+          width: 100%;
+          margin: 10px 0;
+        }
+
+        .order-item {
+          flex-direction: column;
+          padding: 15px;
+        }
+
+        .order-details {
+          width: 100%;
+          margin-top: 10px;
+        }
+
+        .buttons {
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .buttons button {
+          width: 100%;
+        }
       }
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <div class="logo">GEDORCA</div>
-    <input type="text" placeholder="Cari Sepatu...">
-    <% if (user && user.username) { %>
+
+      @media screen and (max-width: 480px) {
+        .order-id {
+          font-size: 16px;
+        }
+
+        .order-date {
+          font-size: 14px;
+        }
+
+        .product-name {
+          font-size: 16px;
+        }
+      }
+      header:hover {
+        box-shadow: 0 6px 30px rgba(0, 0, 0, 0.9);
+      }
+      .logo {
+        font-size: 28px;
+        font-weight: bold;
+        color: #ffd166;
+        text-shadow: 2px 2px 6px rgba(255, 209, 102, 0.7);
+      }
+      header input {
+        padding: 10px;
+        width: 250px;
+        border: none;
+        border-radius: 25px;
+        outline: none;
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff;
+        transition: box-shadow 0.3s ease;
+      }
+      header input:focus {
+        box-shadow: 0 0 10px rgba(255, 209, 102, 0.5);
+      }
+      header a {
+        color: #ffd166;
+        text-decoration: none;
+        margin-left: 15px;
+        font-weight: 600;
+        transition: color 0.3s ease, transform 0.3s ease;
+      }
+      header a:hover {
+        color: #ffeb3b;
+        transform: scale(1.1);
+      }
+      .history {
+        padding: 40px;
+      }
+      h1 {
+        font-size: 2em;
+        color: #ffd166;
+        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+        margin-bottom: 20px;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        background: rgba(34, 40, 49, 0.7);
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
+      }
+      th,
+      td {
+        border: 1px solid rgba(255, 209, 102, 0.2);
+        padding: 12px;
+        text-align: left;
+      }
+      th {
+        background: linear-gradient(90deg, #4a4e69, #5d677a);
+        color: #ffd166;
+        font-weight: 700;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+      }
+      .cancel-btn {
+        background: linear-gradient(90deg, #ff4444, #cc0000);
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: all 0.4s ease;
+        text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+      }
+      .cancel-btn:hover {
+        background: linear-gradient(90deg, #cc0000, #990000);
+        transform: scale(1.1);
+        box-shadow: 0 5px 15px rgba(255, 68, 68, 0.5);
+      }
+      .expired-notice {
+        color: #ff4444;
+        font-style: italic;
+        font-size: 0.9em;
+      }
+      a {
+        color: #ffd166;
+        text-decoration: none;
+        padding: 10px 20px;
+        margin-top: 8px;
+        display: inline-block;
+        border-radius: 25px;
+        background: rgba(74, 78, 105, 0.3);
+        transition: all 0.3s ease;
+      }
+      a:hover {
+        color: #ffeb3b;
+        background: rgba(74, 78, 105, 0.5);
+        transform: scale(1.05);
+        text-decoration: none;
+      }
+      @media (max-width: 768px) {
+        table {
+          font-size: 0.9em;
+        }
+        th,
+        td {
+          padding: 8px;
+        }
+        .cancel-btn {
+          padding: 8px 15px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">GEDORCA</div>
+      <input type="text" placeholder="Cari Sepatu..." />
+      <% if (user && user.username) { %>
       <span>Selamat datang, <%= user.username %> | <a href="/logout">Logout</a></span>
-    <% } else { %>
-      <a href="/login">Login</a> | <a href="/register">Daftar</a>
-    <% } %>
-  </header>
-  <div class="history">
-    <h1>History Pembelian Anda</h1>
-    <table>
-      <tr><th>Produk</th><th>Jumlah</th><th>Tanggal</th><th>Size</th><th>Aksi</th></tr>
-      <% if (history && history.length > 0) { %>
-        <% history.forEach(item => { %>
-          <% const purchaseDate = new Date(item.purchase_date); %>
-          <% const now = new Date(); %>
-          <% const timeDiff = (now - purchaseDate) / (1000 * 60 * 60 * 24); %>
-          <tr>
-            <td><%= item.name %></td>
-            <td><%= item.quantity %></td>
-            <td><%= purchaseDate.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) %></td>
-            <td><%= item.size || 'Tidak ditentukan' %></td>
-            <td>
-              <% if (timeDiff <= 1) { %>
-                <form action="/cancel-purchase/<%= item.id %>" method="POST">
-                  <button type="submit" class="cancel-btn">Batal</button>
-                </form>
-              <% } else { %>
-                <span class="expired-notice">Batas waktu batal (24 jam) telah lewat</span>
-              <% } %>
-            </td>
-          </tr>
-        <% }); %>
       <% } else { %>
-        <tr><td colspan="5">Tidak ada riwayat pembelian.</td></tr>
+      <a href="/login">Login</a> | <a href="/register">Daftar</a>
       <% } %>
-    </table>
-    <a href="/products">Kembali ke Produk</a>
-  </div>
-</body>
+    </header>
+    <div class="history">
+      <h1>History Pembelian Anda</h1>
+      <table>
+        <tr>
+          <th>Produk</th>
+          <th>Jumlah</th>
+          <th>Tanggal</th>
+          <th>Size</th>
+          <th>Aksi</th>
+        </tr>
+        <% if (history && history.length > 0) { %> <% history.forEach(item => { %> <% const purchaseDate = new Date(item.purchase_date); %> <% const now = new Date(); %> <% const timeDiff = (now - purchaseDate) / (1000 * 60 * 60 * 24); %>
+        <tr>
+          <td><%= item.name %></td>
+          <td><%= item.quantity %></td>
+          <td><%= purchaseDate.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' }) %></td>
+          <td><%= item.size || 'Tidak ditentukan' %></td>
+          <td>
+            <% if (timeDiff <= 1) { %>
+            <form action="/cancel-purchase/<%= item.id %>" method="POST">
+              <button type="submit" class="cancel-btn">Batal</button>
+            </form>
+            <% } else { %>
+            <span class="expired-notice">Batas waktu batal (24 jam) telah lewat</span>
+            <% } %>
+          </td>
+        </tr>
+        <% }); %> <% } else { %>
+        <tr>
+          <td colspan="5">Tidak ada riwayat pembelian.</td>
+        </tr>
+        <% } %>
+      </table>
+      <a href="/products">Kembali ke Produk</a>
+    </div>
+  </body>
 </html>

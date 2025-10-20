@@ -22,7 +22,7 @@
     header {
       background: linear-gradient(90deg, #1a252f, #2c3e50);
       color: #fff;
-      padding: 15px 40px;
+      padding: 15px 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -31,6 +31,31 @@
       top: 0;
       z-index: 1000;
       transition: box-shadow 0.3s ease;
+      flex-wrap: wrap;
+    }
+
+    @media screen and (max-width: 768px) {
+      header {
+        padding: 10px 15px;
+      }
+      
+      .logo {
+        font-size: 20px;
+      }
+
+      nav {
+        width: 100%;
+        margin-top: 10px;
+      }
+
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      nav ul li {
+        margin: 5px 0;
+      }
     }
 
     header:hover {
@@ -293,6 +318,15 @@
 
     .reviews {
       margin-top: 40px;
+      text-align: center;
+    }
+
+    .reviews .table-container {
+      overflow-x: auto;
+      margin-top: 20px;
+      padding: 0 20px;
+      max-width: 100%;
+      -webkit-overflow-scrolling: touch;
     }
 
     .reviews table {
@@ -303,14 +337,57 @@
       border-radius: 20px;
       overflow: hidden;
       box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
-      margin-top: 20px;
       backdrop-filter: blur(10px);
+      margin: 0 auto;
     }
 
     .reviews th, .reviews td {
       padding: 18px;
       text-align: left;
       border-bottom: 1px solid rgba(255, 209, 102, 0.2);
+    }
+
+    @media (max-width: 720px) {
+      .reviews table {
+        display: block;
+      }
+      
+      .reviews table thead {
+        display: none;
+      }
+
+      .reviews table tbody,
+      .reviews table tr,
+      .reviews table td {
+        display: block;
+        width: 100%;
+      }
+
+      .reviews table tr {
+        margin-bottom: 15px;
+        background: rgba(34, 40, 49, 0.9);
+        border-radius: 10px;
+        padding: 10px;
+      }
+
+      .reviews table td {
+        text-align: left;
+        padding: 8px 15px;
+        position: relative;
+        border-bottom: none;
+      }
+
+      .reviews table td:before {
+        content: attr(data-label);
+        display: block;
+        font-weight: bold;
+        color: #ffd166;
+        margin-bottom: 5px;
+      }
+
+      .reviews table td:not(:last-child) {
+        border-bottom: 1px solid rgba(255, 209, 102, 0.1);
+      }
     }
 
     .reviews th {
@@ -373,28 +450,127 @@
     @media (max-width: 720px) {
       header {
         padding: 15px 20px;
-        flex-direction: column;
+      }
+      .logo { 
+        font-size: 24px;
+        margin-right: 10px;
+      }
+      .nav-links { 
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+      .nav-links a, .nav-links span { 
+        margin: 0;
+        font-size: 14px;
+      }
+      .slider { 
+        height: 400px;
+      }
+      .slide { 
+        padding: 20px;
+      }
+      .slide img { 
+        width: 45%;
+        height: auto;
+        border: 15px solid #4a4e69;
+        border-radius: 15px;
+        margin-right: 20px;
+      }
+      .slide-text { 
+        width: 45%;
+        font-size: 16px;
+        padding: 15px;
+      }
+      .dots { 
+        bottom: 20px; 
         gap: 10px;
       }
-      .logo { font-size: 24px; }
-      .nav-links { flex-direction: column; gap: 10px; }
-      .nav-links a, .nav-links span { margin: 0; }
-      .slider { height: 300px; }
-      .slide img { 
-        width: calc(60% - 40px);
-        height: calc(100% - 40px);
-        border: 20px solid #4a4e69;
-        border-radius: 15px;
+      .dot { 
+        width: 12px; 
+        height: 12px;
       }
-      .slide-text { display: none; }
-      .dots { bottom: 20px; gap: 10px; }
-      .dot { width: 12px; height: 12px; }
-      .dot.active { transform: scale(1.4); }
-      .dot:hover { transform: scale(1.2); }
-      .content-section { padding: 20px; }
-      .featured-products .product-card { width: 180px; }
-      .testimonials .testimonial { width: 100%; margin: 20px 0; }
-      .reviews th, .reviews td { padding: 12px; }
+      .dot.active { 
+        transform: scale(1.4);
+      }
+      .dot:hover { 
+        transform: scale(1.2);
+      }
+      .content-section { 
+        padding: 20px;
+      }
+      .featured-products .product-card { 
+        width: calc(50% - 20px);
+        min-width: 150px;
+      }
+      .featured-products img {
+        height: 140px;
+      }
+      .testimonials .testimonial { 
+        width: calc(100% - 40px);
+        margin: 10px 20px;
+      }
+      .reviews .table-container {
+        margin: 20px -20px 0;
+        padding: 0 20px;
+      }
+      .reviews table {
+        min-width: 500px;
+      }
+      .reviews th, .reviews td { 
+        padding: 12px;
+        font-size: 14px;
+      }
+      .reviews .section-title {
+        position: sticky;
+        top: 0;
+        background: linear-gradient(135deg, #222831, #393e46);
+        padding: 10px 0;
+        margin: 0;
+        z-index: 1;
+      }
+      .section-title {
+        font-size: 2em;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 10px 15px;
+      }
+      .logo {
+        font-size: 20px;
+      }
+      .nav-links a, .nav-links span {
+        font-size: 13px;
+      }
+      .slider {
+        height: 300px;
+      }
+      .slide {
+        padding: 10px;
+      }
+      .slide img {
+        width: 45%;
+        border: 10px solid #4a4e69;
+      }
+      .slide-text {
+        width: 45%;
+        font-size: 14px;
+        padding: 10px;
+      }
+      .featured-products .product-card {
+        width: calc(100% - 20px);
+      }
+      .section-title {
+        font-size: 1.8em;
+      }
+      .cta button {
+        padding: 12px 30px;
+        font-size: 1.1em;
+      }
     }
   </style>
 </head>
@@ -478,8 +654,9 @@
 
     <div class="reviews">
       <h2 class="section-title">Ulasan Pelanggan</h2>
-      <table id="reviewsTable">
-        <thead>
+      <div class="table-container">
+        <table id="reviewsTable">
+          <thead>
           <tr>
             <th>Ulasan</th>
             <th>Nama</th>
@@ -491,9 +668,9 @@
             <% let displayedReviews = reviews.slice(0, 5); %>
             <% displayedReviews.forEach(review => { %>
               <tr>
-                <td><%= review.review_text %></td>
-                <td><%= review.username %></td>
-                <td><%= new Date(review.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' }) %></td>
+                <td data-label="Ulasan"><%= review.review_text %></td>
+                <td data-label="Nama"><%= review.username %></td>
+                <td data-label="Tanggal"><%= new Date(review.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' }) %></td>
               </tr>
             <% }); %>
             <% if (reviews.length > 5) { %>
@@ -501,9 +678,9 @@
               <tbody id="additionalReviews" class="additional-reviews">
                 <% additionalReviews.forEach(review => { %>
                   <tr>
-                    <td><%= review.review_text %></td>
-                    <td><%= review.username %></td>
-                    <td><%= new Date(review.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' }) %></td>
+                    <td data-label="Ulasan"><%= review.review_text %></td>
+                    <td data-label="Nama"><%= review.username %></td>
+                    <td data-label="Tanggal"><%= new Date(review.created_at).toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' }) %></td>
                   </tr>
                 <% }); %>
               </tbody>
@@ -512,7 +689,8 @@
             <tr><td colspan="3">Belum ada ulasan.</td></tr>
           <% } %>
         </tbody>
-      </table>
+        </table>
+      </div>
       <% if (typeof reviews !== 'undefined' && reviews && reviews.length > 5) { %>
         <div class="view-all" onclick="toggleAdditionalReviews()">View All</div>
       <% } %>

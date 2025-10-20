@@ -22,7 +22,7 @@
       header {
         background: linear-gradient(90deg, #1a252f, #2c3e50);
         color: #fff;
-        padding: 15px 30px;
+        padding: 15px 20px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -30,6 +30,72 @@
         position: sticky;
         top: 0;
         z-index: 1000;
+        flex-wrap: wrap;
+      }
+
+      @media screen and (max-width: 768px) {
+        header {
+          padding: 10px 15px;
+        }
+
+        .logo {
+          font-size: 20px;
+        }
+
+        .nav-links {
+          width: 100%;
+          margin-top: 10px;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+
+        .admin-container {
+          padding: 10px;
+        }
+
+        .product-form {
+          width: 100%;
+          margin: 10px 0;
+        }
+
+        .product-form input,
+        .product-form select,
+        .product-form textarea {
+          width: 100%;
+        }
+
+        .product-list {
+          width: 100%;
+          overflow-x: auto;
+        }
+
+        .product-item {
+          flex-direction: column;
+          padding: 15px;
+        }
+
+        .buttons {
+          flex-direction: column;
+          gap: 10px;
+        }
+
+        .buttons button {
+          width: 100%;
+        }
+      }
+
+      @media screen and (max-width: 480px) {
+        .product-title {
+          font-size: 18px;
+        }
+
+        .product-price {
+          font-size: 16px;
+        }
+
+        table {
+          font-size: 14px;
+        }
       }
 
       .nav-links {
