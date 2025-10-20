@@ -195,6 +195,12 @@
     <div class="products">
       <h1>Daftar Sepatu Kerja</h1>
       <ul id="product-list">
+        <% // helper: encode each path segment so spaces and '+' become URL-safe (%20, %2B)
+           function encodePath(p) {
+             if (!p) return p;
+             return p.split('/').map(function(segment) { return encodeURIComponent(segment); }).join('/');
+           }
+        %>
         <% products.forEach((product, index) => { %> 
         <% const baseIndex = (index % 7) + 1; %> 
         <% 
@@ -225,7 +231,7 @@
         %>
         <li>
           <a href="/product/<%= product.id %>">
-            <img class="product-img" src="<%= initialImage %>" <% if (hoverImage !== initialImage) { %> onmouseover="this.src='<%= hoverImage %>'" onmouseout="this.src='<%= initialImage %>'" <% } %> alt="<%= product.name %>">
+            <img class="product-img" src="<%= encodePath(initialImage) %>" <% if (hoverImage !== initialImage) { %> onmouseover="this.src='<%= encodePath(hoverImage) %>'" onmouseout="this.src='<%= encodePath(initialImage) %>'" <% } %> alt="<%= product.name %>">
             <h3><%= product.name %></h3>
             <p>Rp <%= Math.floor(product.price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") %> - Stok: <%= product.stock %></p>
           </a>
